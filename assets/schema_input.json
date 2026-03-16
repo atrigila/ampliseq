@@ -6,7 +6,35 @@
     "type": "array",
     "items": {
         "type": "object",
+        "anyOf": [
+            {
+                "required": ["sample", "fastq_1"]
+            },
+            {
+                "required": ["sampleID", "forwardReads"]
+            }
+        ],
         "properties": {
+            "sample": {
+                "type": "string",
+                "pattern": "^[a-zA-Z][a-zA-Z0-9_]+$",
+                "errorMessage": "Unique sample must be provided: Must start with a letter, and can only contain letters, numbers or underscores; Regex: '^[a-zA-Z][a-zA-Z0-9_]+$'",
+                "meta": ["sample"]
+            },
+            "fastq_1": {
+                "type": "string",
+                "format": "file-path",
+                "exists": true,
+                "pattern": "^([\\S\\s]*\/)?[^\\s\/]+\\.f(ast)?q\\.gz$",
+                "errorMessage": "FastQ file for reads 1 must be provided, cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
+            },
+            "fastq_2": {
+                "type": "string",
+                "format": "file-path",
+                "exists": true,
+                "pattern": "^([\\S\\s]*\/)?[^\\s\/]+\\.f(ast)?q\\.gz$",
+                "errorMessage": "FastQ file for reads 2 cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
+            },
             "sampleID": {
                 "type": "string",
                 "pattern": "^[a-zA-Z][a-zA-Z0-9_]+$",
@@ -45,8 +73,6 @@
                 "errorMessage": "Quantification must be a number",
                 "meta": ["quant_reading"]
             }
-        },
-        "required": ["sampleID", "forwardReads"]
-    },
-    "uniqueEntries": ["sampleID"]
+        }
+    }
 }
