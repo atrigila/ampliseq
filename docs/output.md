@@ -665,7 +665,7 @@ Pipeline results are stored in phyloseq and TreeSummarizedExperiment R objects f
 
 ## Read count report
 
-This report includes information on how many reads per sample passed each pipeline step in which a loss can occur. Specifically, how many read pairs entered cutadapt, were reverse complemented, passed trimming; how many read pairs entered DADA2, were denoised, merged and non-chimeric; and how many counts were lost during excluding unwanted taxa and removing low abundance/prevalence sequences in QIIME2.
+This report includes information on how many reads per sample passed each pipeline step in which a loss can occur. Specifically, how many read pairs entered cutadapt, were reverse complemented, passed trimming; how many read pairs entered DADA2, were denoised, entered pair-end merging (`merge_input`), were successfully merged and non-chimeric; and how many counts were lost during excluding unwanted taxa and removing low abundance/prevalence sequences in QIIME2.
 
 <details markdown="1">
 <summary>Output files</summary>
